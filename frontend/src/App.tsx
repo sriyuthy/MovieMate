@@ -1,23 +1,29 @@
 import './App.css'
-import { Home } from './Home'
-import { Navbar } from './Navbar'
-import { Searchbar } from './Searchbar'
+import { Home } from './assets/components/Home'
+import { MovieDetails } from './assets/components/MovieDetails'
+import { Navbar } from './assets/components/Navbar'
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
-
   return(
-
+    <>
+    <Navbar />
     <div className='app'>
-      <Navbar />
-      <div className='content'>
-        <h1>Welcome</h1>
-        <Searchbar />
-        
-      </div>
+      <Routes>
+        <Route path='/' element={
+          <div className='content'>
+            <Home />
+          </div>
+        } />
+        <Route path='/movie/:title' element={
+          <div className='content'>
+            <MovieDetails />
+          </div>
+        } />
+      </Routes>
     </div>
-
+  </>
   )
-
 }
 
 export default App

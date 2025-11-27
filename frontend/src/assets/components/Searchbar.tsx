@@ -1,5 +1,6 @@
 import {Search} from 'lucide-react'
 import { useCallback, useEffect, useState, type SetStateAction } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const sampleData = [
     {
@@ -22,47 +23,52 @@ const sampleData = [
     
 
 export const Searchbar = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+  const handleClick = (title: string) => {
+    navigate(`/movie/${title}`);
+  }
 
-    type Item = {
-        id: number,
-        title: string
-    }
+  const [searchTerm, setSearchTerm] = useState('');
 
-    const [searchResults, setSearchResults] = useState<Item[]>([]);
+  type Item = {
+      id: number,
+      title: string
+  }
 
-    const debounce = (func: (arg0: any) => any, delay: number | undefined) => {
-        let timeoutId: number | undefined;
-        return (...args: [any]) => {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => func(...args), delay)
-        }
+  const [searchResults, setSearchResults] = useState<Item[]>([]);
 
-    }
+  const debounce = (func: (arg0: any) => any, delay: number | undefined) => {
+      let timeoutId: number | undefined;
+      return (...args: [any]) => {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => func(...args), delay)
+      }
 
-    const handleSearch = useCallback(
-        debounce((term) => {
-            if (term.trim() === '') {
-                setSearchResults([]);
-            } else {
-                const results = sampleData.filter((item) => 
-                    item.title.toLowerCase().includes(term.toLowerCase()),
-                )
-                setSearchResults(results);
-            }
-        }, 300),
-        [],
-    )
+  }
 
-    useEffect(() => {
-        handleSearch(searchTerm)
-    }, [searchTerm, handleSearch])
+  const handleSearch = useCallback(
+      debounce((term) => {
+          if (term.trim() === '') {   
+              setSearchResults([]);
+          } else {
+              const results = sampleData.filter((item) => 
+                  item.title.toLowerCase().includes(term.toLowerCase()),
+              )
+              setSearchResults(results);
+          }
+      }, 300),
+      [],
+  )
 
-    const handleInputChange = (e: { target: { value: SetStateAction<string>; }; }) => {
-        setSearchTerm(e.target.value)
-    }
+  useEffect(() => {
+      handleSearch(searchTerm)
+  }, [searchTerm, handleSearch])
 
-    return (
+  const handleInputChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+      setSearchTerm(e.target.value)
+  }
+
+  return (
     <div className="page-container">
       <form
         onSubmit={(e) => e.preventDefault()}
@@ -85,11 +91,10 @@ export const Searchbar = () => {
       </form>{' '}
       {searchResults.length > 0 && (
         <div className="results-container">
-          <h2 className="results-title"> Search Results: </h2>{' '}
-          <ul>
+          <ul className='no-bullets'>
             {' '}
             {searchResults.map((result) => (
-              <li key={result.id} className="result-item">
+              <li key={result.id} className="result-item" onClick={() => handleClick(result.title)}>
                 <a
                   className="result-link"
                   target="_blank"

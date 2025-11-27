@@ -5,6 +5,7 @@ export const Navbar = () => {
                 <h1>MovieMate</h1>
                 <div className="links">
                     <a href="/">Home</a>
+                    <a href="/">About</a>
                     <a href="/">Placeholder</a>
                 </div>
             </nav>
