@@ -4,34 +4,46 @@
 * {
   margin: 0;
   font-family: "Quicksand";
+  background-color: #4b5563;
+  scrollbar-width: none;
 }
 
 /* navbar styles */
+
 .navbar {
   padding: 20px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #f2f2f2;
+  background-color:#292f36;
+  /*offset-x offset-y blur-radius spread-radius color*/
+  box-shadow: 0 0 5 50 #ffffff;
 }
 
 .navbar h1 {
   position: relative;
   left: 1rem;
-  color: #000000;
+  color: #ffffff;
+  background-color:#292f36;
 }
+
 .navbar .links {
   position: relative;
   right: 1rem;
   margin-left: auto; 
   display: flex;
   gap: 50px;
+  background-color:#292f36;
 }
+
 .navbar a {
   text-decoration: none;
   padding: 6px;
+  color: #ffffff;
+  background-color:#292f36;
 }
+
 .navbar a:hover {
-  color: #3b82f6;
+  color: #615e5e;
 }
 
 .content {
@@ -39,7 +51,8 @@
 }
 
 .content h1 {
-  text-align: center
+  text-align: center;
+  color: #ffffff;
 }
 
 /* searchbar styles */
@@ -48,7 +61,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: white;
+  background: 4b5563;
   min-height: 100vh;
   padding: 100px;
 }
@@ -92,46 +105,62 @@
   height: 100%;
   display: flex;
   align-items: center;
+  background: transparent;
+  
 }
 
 .search-button {
-  color: #3b82f6;
-  background: none;
+  color: #6e7f91;
+  background: transparent;
   border: none;
   cursor: pointer;
 }
 
 .search-button:hover {
-  color: #4b5563;
+  color: #292f36;
 }
+
+.search-button svg {
+  background: transparent;
+}
+
+/* search results styles */
 
 .results-container {
   width: 100%;
   max-width: 1190px;
-  background: white;
+  background-color: white;
   border-radius: 0.5rem;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  
 }
 
 .result-item {
-  margin-bottom: 0.5rem;
   text-align: center;
   font-size: 20px;
-  padding: 0.75rem;
+  padding: 1rem;
+  background: white;
+}
 
+.result-item:nth-child(even) {
+  background: #e5e7eb;
+}
+
+.result-item:nth-child(even) .result-text {
+  background: #e5e7eb;
 }
 
 .result-item:hover {
-  background-color: #e5e7eb;
+  background: #e5e7eb79;
 }
 
-.result-link {
-  color: #2563eb;
-  text-decoration: none;
+.result-item:hover .result-text {
+  background: transparent;
 }
 
-.result-link:hover {
-  cursor: pointer; 
+.result-text {
+  background: white;
+  color: black;
 }
 
 .no-bullets {

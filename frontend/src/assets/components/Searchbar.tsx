@@ -95,11 +95,7 @@ export const Searchbar = () => {
             {' '}
             {searchResults.map((result) => (
               <li key={result.id} className="result-item" onClick={() => handleClick(result.title)}>
-                <a
-                  className="result-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a className='result-text'>
                   {' '}
                   {result.title}{' '}
                 </a>{' '}
