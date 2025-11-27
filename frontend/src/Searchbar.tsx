@@ -66,32 +66,32 @@ export const Searchbar = () => {
     <div className="page-container">
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="search-wrapper"
+        className="search-form"
       >
-        <div className="relative">
+        <div className="search-wrapper">
           <input
             type="text"
             value={searchTerm}
             onChange={handleInputChange}
-            className="w-full rounded-full border border-gray-200 bg-white px-5 py-3 pr-20 text-base shadow-md transition-shadow duration-200 hover:shadow-lg focus:border-gray-300 focus:outline-none"
+            className="search-input"
             placeholder="Search for a movie"
           />
           <div className="search-icons">
             <button type="submit" className="search-button">
-              <Search size={20} />{' '}
+              <Search size={25} />{' '}
             </button>{' '}
           </div>{' '}
         </div>{' '}
       </form>{' '}
       {searchResults.length > 0 && (
-        <div className="w-full max-w-2xl rounded-lg bg-white p-4 shadow-md">
-          <h2 className="mb-4 text-xl font-bold"> Search Results: </h2>{' '}
+        <div className="results-container">
+          <h2 className="results-title"> Search Results: </h2>{' '}
           <ul>
             {' '}
             {searchResults.map((result) => (
-              <li key={result.id} className="mb-2">
+              <li key={result.id} className="result-item">
                 <a
-                  className="text-blue-600 hover:underline"
+                  className="result-link"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
